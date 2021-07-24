@@ -1,0 +1,8 @@
+venv/
+credentials/
+credentials/sa.json
+.DS_Store
+.idea/
+__pycache__/
+data/
+config/
