@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Store{% endblock %}
+
+{% block content %}
+<h1 align="center">️📚️ Pick-a-Book 📚️</h1>
+<div class="input-group rounded">
+  <input type="search"
+         class="form-control rounded"
+         placeholder="Enter title, author, or ISBN"
+         align="center"
+         aria-label="Search"
+         aria-describedby="search-addon" />
+  <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i> Search</button>
+</div>
+{% endblock %}
+

@@ -15,3 +15,11 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     last_name = db.Column(db.String(150))
     notes = db.relationship('Note')
+
+class Books(db.Model, UserMixin):
+    book_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(500))
+    authors = db.Column(db.String(250))
+    isbn13 = db.Column(db.Integer, unique=True)
+    publication_date = db.Column(db.DateTime('%m/%d/%Y'))
+    publisher = db.Column(db.String(250))
