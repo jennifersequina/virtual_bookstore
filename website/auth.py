@@ -64,8 +64,8 @@ def sign_up():
 
     return render_template("sign_up.html", user=current_user)
 
-@auth.route('/store')
+@auth.route('/library')
 def store():
-    return render_template("store.html", user=current_user)
+    return render_template("library.html", user=current_user)
 
 
