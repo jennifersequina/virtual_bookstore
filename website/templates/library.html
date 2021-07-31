@@ -3,16 +3,26 @@
 
 {% block content %}
 <h1 align="center">️📚️ Pick-a-Book 📚️</h1>
-<div class="input-group rounded">
-  <input type="search"
+<form method="POST">
+  <div class="input-group rounded">
+    <input type="search"
          class="form-control rounded"
-         placeholder="Enter title, author, or ISBN"
+         placeholder="Enter title or author"
+         id="search-books"
+         name="search-books"
          align="center"
          aria-label="Search"
-         aria-describedby="search-addon" />
-  <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i> Search</button>
-</div>
-
+         aria-describedby="search-addon"/>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i> Search</button>
+  </div>
+</form>
+<u1 class="list-group list-group-flush" id="found_books">
+    {% for book in found_books %}
+    <li class="list-group-item">
+        <a style="float:left;">{{ book.title }}</a>  <a style="float:right;">{{ book.authors }}</a>
+    </li>
+    {% endfor %}
+</u1>
 
 {% endblock %}
 

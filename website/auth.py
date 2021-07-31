@@ -3,8 +3,9 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from gbq import GBQ
 
-
+gbq = GBQ()
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -12,6 +13,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        # print(request.form)
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -64,8 +66,14 @@ def sign_up():
 
     return render_template("sign_up.html", user=current_user)
 
-@auth.route('/library')
-def store():
-    return render_template("library.html", user=current_user)
+@auth.route('/library', methods=['GET', 'POST'])
+def library():
+    if request.method == 'GET':
+        return render_template("library.html", user=current_user)
+
+    elif request.method == 'POST':
+        search_books_str = request.form.get('search-books')
+        list_of_books = gbq.search_books(search_books=search_books_str)
+        return render_template("library.html", user=current_user, found_books=list_of_books)
 
 
