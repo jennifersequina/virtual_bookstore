@@ -10,22 +10,15 @@ credentials = service_account.Credentials.from_service_account_file(config['cred
 client = bigquery.Client(credentials=credentials, project=project_id)
 
 
-# query creation
-query = """
-    SELECT *
-    FROM `virtual-bookstore-320810.dev.books` 
-    WHERE title
-    LIKE '%Anne%'
-"""
-query_job = client.query(query)
-rows = query_job.result()
+ # importing csv file to bigquery
+# df = pd.read_csv('data/books with category.csv').rename(columns={'Name': 'title',
+#                                                                  'Author': 'author',
+#                                                                  'User Rating': 'user_rating',
+#                                                                  'Reviews': 'reviews',
+#                                                                  'Price': 'price',
+#                                                                  'Year': 'year',
+#                                                                  'Genre': 'genre'})
+# df.to_gbq('dev.books_category', credentials=credentials, project_id=project_id)
 
-for row in rows:
-    print(row.title)
-
-
-#  importing csv file to bigquery
-# df = pd.read_csv('books.csv').rename(columns={'  num_pages':'num_pages'})
-# df.to_gbq('dev.books', credentials=credentials, project_id=project_id)
 
 

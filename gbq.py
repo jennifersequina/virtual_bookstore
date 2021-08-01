@@ -22,11 +22,11 @@ class GBQ:
         clean_search_books = self._clean_string(search_books)
 
         query = f"""
-        SELECT title, SPLIT(authors, '/')[SAFE_OFFSET(0)] AS authors, average_rating
-        FROM `{self.project_id}.dev.books` 
+        SELECT title, SPLIT(author, '/')[SAFE_OFFSET(0)] AS author, user_rating, price
+        FROM `{self.project_id}.dev.books_category` 
         WHERE LOWER(title)
         LIKE '%{clean_search_books}%'
-        OR LOWER(authors)
+        OR LOWER(author)
         LIKE '%{clean_search_books}%'
         """
 
