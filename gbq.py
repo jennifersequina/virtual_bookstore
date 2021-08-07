@@ -22,7 +22,7 @@ class GBQ:
         clean_search_books = self._clean_string(search_books)
 
         query = f"""
-        SELECT title, SPLIT(author, '/')[SAFE_OFFSET(0)] AS author, user_rating, price
+        SELECT title, SPLIT(author, '/')[SAFE_OFFSET(0)] AS author
         FROM `{self.project_id}.dev.books_category` 
         WHERE LOWER(title)
         LIKE '%{clean_search_books}%'
@@ -54,3 +54,4 @@ class GBQ:
         clean_str = clean_str.strip()
         print(f"Original: {str_pattern} cleaned: {clean_str}")
         return clean_str
+

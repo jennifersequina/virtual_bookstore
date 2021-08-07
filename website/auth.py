@@ -76,4 +76,6 @@ def library():
         list_of_books = gbq.search_books(search_books=search_books_str)
         return render_template("library.html", user=current_user, found_books=list_of_books)
 
-
+@auth.route('/results', methods=['GET', 'POST'])
+def results():
+    return render_template("results.html", user=current_user)
