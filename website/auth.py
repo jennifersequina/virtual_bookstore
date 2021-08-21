@@ -70,12 +70,22 @@ def sign_up():
 def library():
     if request.method == 'GET':
         return render_template("library.html", user=current_user)
-
     elif request.method == 'POST':
         search_books_str = request.form.get('search-books')
         list_of_books = gbq.search_books(search_books=search_books_str)
+        print(list_of_books)
         return render_template("library.html", user=current_user, found_books=list_of_books)
 
-@auth.route('/results', methods=['GET', 'POST'])
-def results():
-    return render_template("results.html", user=current_user)
+@auth.route('/results/<title>', methods=['GET'])
+def results(title):
+    if request.method == 'GET':
+        # title = request.form.get('book-title')
+        book_content = gbq.get_book_details(book_title=title)
+        print(book_content)
+        return render_template("results.html", user=current_user, book_details=book_content)
+    # elif request.method == 'POST':
+    #     return render_template("results.html", user=current_user)
+
+
+
+

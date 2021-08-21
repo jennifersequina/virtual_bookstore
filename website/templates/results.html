@@ -1,22 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Book Details{% endblock %}
+{% block title %}Results{% endblock %}
 
 {% block content %}
-<h1 align="center">️📚️ Book Details 📚️</h1>
-<div id="container">
-  <img src="https://images-na.ssl-images-amazon.com/images/I/51Dq7QpdXuL._SX302_BO1,204,203,200_.jpg" style= "float:left" width="300" height="500"/>
-  <div id="text" align="center" style="padding-right: 80px; padding-top: 20px">
-     Book Title:
-  </div>
-  <div id="text" align="center" style="padding-right: 80px; padding-top: 20px">
-     Author(s):
-  </div>
-  <div id="text" align="center" style="padding-right: 80px; padding-top: 20px">
-     Rating: in STARS
-  </div>
-  <div id="text" align="center" style="padding-right: 80px; padding-top: 20px">
-     Price: $
-  </div>
+<h1 align="center">️📖 Book Details 📖</h1>
+
+<div class="container" id="book-details">
+    {% for details in book_details %}
+    <div class="small-container" align="center">
+        <img src="{{details.book_image}}">
+    </div>
+    <div class="small-container" align="center">
+        <h2 id="title" style="padding-top: 20px">{{ details.title }}</h2>
+        <h6 id="author" style="padding-top: 20px">Author: {{ details.author }}</h6>
+        <h6 id="rating" style="padding-top: 20px">Rating: {{ details.user_rating }} 🌟</h6>
+        <h6 id="year" style="padding-top: 20px">Year: {{ details.year }}</h6>
+        <h6 id="genre" style="padding-top: 20px">Genre: {{ details.genre }}</h6>
+        <a id="buy_link" href="{{ details.book_link }}" style="padding-top:50px">Buy this book in Amazon 🛒</a>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
+
+

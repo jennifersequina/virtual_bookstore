@@ -23,7 +23,7 @@ class GBQ:
 
         query = f"""
         SELECT title, SPLIT(author, '/')[SAFE_OFFSET(0)] AS author
-        FROM `{self.project_id}.dev.books_category` 
+        FROM `{self.project_id}.dev.books` 
         WHERE LOWER(title)
         LIKE '%{clean_search_books}%'
         OR LOWER(author)
@@ -55,3 +55,17 @@ class GBQ:
         print(f"Original: {str_pattern} cleaned: {clean_str}")
         return clean_str
 
+    def get_book_details(self, book_title: str) -> List[Dict[str, Any]]:
+
+        query_details = f"""
+                SELECT *
+                FROM `{self.project_id}.dev.books` 
+                WHERE title = "{book_title}"
+                """
+
+        print(query_details)
+        rows = self.client.query(query=query_details).result()
+        book_details = list()
+        for r in rows:
+            book_details.append(dict(zip(r.keys(), r.values())))
+        return book_details

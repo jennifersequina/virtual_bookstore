@@ -19,10 +19,12 @@
 <u1 class="list-group list-group-flush" id="found_books">
     {% for book in found_books %}
     <li class="list-group-item">
-        <a style="float:left;">{{ book.title }}</a>  <a style="float:right;">{{ book.author }}</a>  <a style="float:right;">{{ book.user_rating }}</a>
+        <a id="book-title" href="/results/{{ book.title }}" style="float:left;">{{ book.title }}</a>
+        <a id="book-author" href="/results/{{ book.title }}" style="float:right;">{{ book.author }}</a>
     </li>
     {% endfor %}
 </u1>
 
 {% endblock %}
+
 
