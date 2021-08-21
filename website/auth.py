@@ -79,12 +79,9 @@ def library():
 @auth.route('/results/<title>', methods=['GET'])
 def results(title):
     if request.method == 'GET':
-        # title = request.form.get('book-title')
         book_content = gbq.get_book_details(book_title=title)
         print(book_content)
         return render_template("results.html", user=current_user, book_details=book_content)
-    # elif request.method == 'POST':
-    #     return render_template("results.html", user=current_user)
 
 
 
